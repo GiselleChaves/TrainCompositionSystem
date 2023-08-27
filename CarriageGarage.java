@@ -1,34 +1,28 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class CarriageGarage {
-    private List<Carriage> carriages;
+public class CarriageGarage {
 
-    /**
-     * 
-     */
-    public CarriageGarage() {
-        carriages = new ArrayList<>();
-    }
+    private static List<Carriage> carriages = new ArrayList<>();
 
     /**
      * @param carriage
      */
-    public void addCarriage(Carriage carriage) {
+    public static void addCarriage(Carriage carriage) {
         carriages.add(carriage);
     }
 
     /**
      * @param carriage
      */
-    public void removeCarriage(Carriage carriage) {
+    public static void removeCarriage(Carriage carriage) {
         carriages.remove(carriage);
     }
 
     /**
-     * @return
+     * 
      */
-    public List<Carriage> getCarriages() {
+    public static List<Carriage> getCarriages() {
         return carriages;
     }
 }

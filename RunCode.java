@@ -4,6 +4,9 @@ public class RunCode {
   static Scanner in = new Scanner(System.in);
   static private int option;
   
+  /**
+  * 
+  */
   public static void printTrainFigure() {
     System.out.println("--------------------------------------------------");
     System.out.println("\n     e@@@@@@@@@@@@@@@");
@@ -12,10 +15,13 @@ public class RunCode {
     System.out.println("  II__[w] | [i] [z] |");
     System.out.println(" {======|_|~~~~~~~~~|");
     System.out.println("/oO--000'\"`-OO---OO-'");
-
   }
 
+  /**
+  * 
+  */
   public static void trainCompositionSystem() {
+
     do {
       System.out.println("--------------------------------------------------");
       System.out.println("Welcome to Train Composition System!");
@@ -32,13 +38,13 @@ public class RunCode {
 
       switch (option) {
         case 1:
-          //createTrain();
+          Train.createTrain();
           break;
         case 2:
           //editTrain();
           break;
         case 3:
-          //listTrains();
+          TrainYard.listTrains();
           break;
         case 4:
           //disassembleTrain();

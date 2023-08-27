@@ -11,7 +11,12 @@ public class Carriage {
      * @param carriageWeight
      */
     public Carriage(int id, int maxCapacity, int carriageWeight){
-        this.id = id;
+        if (isCarriageIdTaken(id)) {
+            throw new IllegalArgumentException("Carriage with ID " + id + " already exists.");
+        }
+        else{
+            this.id = id;
+        }
         this.maxCapacity = maxCapacity;
         this.carriageWeight = carriageWeight;
         this.currentTrain = null;
@@ -50,5 +55,18 @@ public class Carriage {
      */
     public void setCurrentTrain(Train currentTrain) {
         this.currentTrain = currentTrain;
+    }
+
+    /**
+     * @param idToCheck
+     */
+    private boolean isCarriageIdTaken(int idToCheck) {
+
+        for(Carriage carriage : CarriageGarage.getCarriages()){
+            if(idToCheck == carriage.getId()){
+                return true;
+            }
+        }
+        return false;
     }
 }

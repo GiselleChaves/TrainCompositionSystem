@@ -67,6 +67,9 @@ public class Locomotive {
         this.currentTrain = currentTrain;
     }
 
+    /**
+     * @param locomotiveId
+     */
     public static Locomotive findLocomotiveById(int locomotiveId) {
         for (Locomotive locomotive : LocomotiveGarage.getLocomotives()) {
             if (locomotive.getId() == locomotiveId) {
