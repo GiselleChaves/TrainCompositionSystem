@@ -1,11 +1,23 @@
 import java.util.*;
 
 public class TrainCompositionSystem {
-    static TrainYard trainYard = new TrainYard();
-    static LocomotiveGarage locomotiveGarage = new LocomotiveGarage();
-    static CarriageGarage carraigeGarage = new CarriageGarage();
+    public static void main(String[] args) {
+        TrainYard trainYard = new TrainYard();
+        LocomotiveGarage locomotiveGarage = new LocomotiveGarage();
+        CarriageGarage carraigeGarage = new CarriageGarage();
 
-    public static void printSeparatorLine() {
+
+        RunCode.printTrainFigure();
+
+        RunCode.trainCompositionSystem();
+
+
+
+
+    }  
+}
+
+    /*public static void printSeparatorLine() {
         System.out.println("--------------------------------------------------");
     }
     
@@ -72,9 +84,9 @@ public class TrainCompositionSystem {
                 return locomotive;
             }
         }
-        return null; // Não encontrou a locomotiva
-    }
-    
+        return null;
+    } OK NA CLASSE
+
     public static Train findTrainById(int trainId) {
         for (Train train : trainYard.getTrains()) {
                 if (train.getId() == trainId) {
@@ -82,7 +94,10 @@ public class TrainCompositionSystem {
                 }
         }
         return null; // Não encontrou o trem
-    }
+    } AJUSTANDO NA CLASSE
+    
+    
+    
 
     public static void createTrain() {
         Scanner in = new Scanner(System.in);
@@ -106,6 +121,5 @@ public class TrainCompositionSystem {
         }
     
         // Criar trem e a locomotiva dele
-        // colocar o trem no patio
-    }  
-}
+        // colocar o trem no patio*/
+    
