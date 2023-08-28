@@ -7,8 +7,6 @@ public class TrainCompositionSystem {
         CarriageGarage carraigeGarage = new CarriageGarage();
 
 
-        RunCode.printTrainFigure();
-
         RunCode.trainCompositionSystem();
 
 

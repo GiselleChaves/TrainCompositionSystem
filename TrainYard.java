@@ -42,7 +42,9 @@ class TrainYard {
     /**
      * @return
      */
-    public List<Train> getTrains() {
-        return trains;
+    public Train getTrains(List<Train> trains) {
+        for(Train train : trainYard.getTrains) {
+            System.out.println(train);
+        }
     }
 }

@@ -15,7 +15,7 @@ public class Train {
     }
 
     /**
-     * 
+     * ESTÁ SENDO CRIADA PELA ASHILEY
      */
     public static void createTrain() {
         Scanner in = new Scanner(System.in);
@@ -37,6 +37,16 @@ public class Train {
             System.out.println("Locomotive with ID " + firstLocomotiveId + " not found.");
             return;
         }
+    
+    public static void editTrain() {
+        System.out.print("Enter the train ID: ");
+        int trainId = in.nextInt();
+
+        if(findTrainById(trainId) != null) {
+            System.out.println("Found train!");
+        }
+
+    }
 
     /**
      * @return
@@ -55,9 +65,8 @@ public class Train {
     /**
      * @return
      */
-    public List<Carriage> getCarriages() {
+    public List<Carriage> getCarriages() {    
         return carriages;
     }
-
-
+}
 }
