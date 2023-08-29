@@ -3,12 +3,16 @@ import java.util.List;
 
 public class TrainYard {
 
-    private static List<Train> trains = new ArrayList<>();
+    private static List<Train> trains;
 
+    public TrainYard() {
+        trains = new ArrayList<>();
+    }
+    
     /**
      * @param train
      */
-    public static void addTrain(Train train) {
+    public void addTrain(Train train) { //RETIREI STATIC
         if (train.getLocomotives().isEmpty()) {
             System.out.println("Sorry, a train must have at least one locomotive!\n. Try again.");
             return;
@@ -22,7 +26,7 @@ public class TrainYard {
     /**
      * @param train
      */
-    public static void removeTrain(Train train) {
+    public void removeTrain(Train train) { //RETIREI STATIC
         trains.remove(train);
     }
 
@@ -36,7 +40,7 @@ public class TrainYard {
     /**
      * @param trainId
      */
-    public static Train findTrainById(int trainId) {
+    public Train findTrainById(int trainId) { //RETIREI STATIC
 
         for (Train train : TrainYard.getTrains()) {
                 if (train.getId() == trainId) {

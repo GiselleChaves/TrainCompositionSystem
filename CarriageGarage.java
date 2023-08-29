@@ -8,14 +8,14 @@ public class CarriageGarage {
     /**
      * @param carriage
      */
-    public static void addCarriage(Carriage carriage) {
+    public void addCarriage(Carriage carriage) { //RETIREI STATIC
         carriages.add(carriage);
     }
 
     /**
      * @param carriage
      */
-    public static void removeCarriage(Carriage carriage) {
+    public void removeCarriage(Carriage carriage) { //RETIREI STATIC
         carriages.remove(carriage);
     }
 

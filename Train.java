@@ -1,12 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Train {
     private int id; 
     public List<Locomotive> locomotives;
     public List<Carriage> carriages;
-
+    
     /**
      * @param id
      */
@@ -37,43 +36,11 @@ public class Train {
         return carriages;
     }
 
-    /**
-     * 
-     */
-    public static void createTrain() {
-
-        Scanner in = new Scanner(System.in);
-    
-        System.out.print("Enter the train ID: ");
-        int trainId = in.nextInt();
-    
-        if (TrainYard.findTrainById(trainId) != null) { 
-            System.out.println("Train with ID " + trainId + " already exists.");
-            return;
-        }
-    
-        System.out.print("Enter the ID of the first locomotive: ");
-        int firstLocomotiveId = in.nextInt();
-        
-        Locomotive firstLocomotive = Locomotive.findLocomotiveById(firstLocomotiveId);
-    
-        if (firstLocomotive == null) {
-            System.out.println("Locomotive with ID " + firstLocomotiveId + " not found.");
-            return;
-        }
-
-        Train newTrain = new Train(trainId);
-        newTrain.locomotives.add(firstLocomotive);
-
-        TrainYard.addTrain(newTrain);
-
-        System.out.println("Train " + trainId + " created with locomotive " + firstLocomotiveId + ".");
-    }
 
     /**
      * 
      */
-    public static void editTrain() {
+    public void editTrain(int trainId) {
         /*Implementação */
     }
 
@@ -81,6 +48,22 @@ public class Train {
      * 
      */
     public static void disassembleTrain(){
+        
+        /*Scanner in = new Scanner(System.in);
+    
+        System.out.print("Enter the train ID: ");
+        int trainId = in.nextInt();
+    
+        if (TrainYard.findTrainById(trainId) != null) { 
+            System.out.println("The train with id: " + trainId + " was found.");
+            for (Train train : TrainYard.getTrains()) {
+                if (train.getId() == trainId) {
+                    trains.removeTrain();
+                }
+        } else {
+            System.out.println("The train with Id: " + trainId + " was not found.");
+        }*/
+        
         /*Implementação */
     }
 }

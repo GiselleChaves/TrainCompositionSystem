@@ -2,7 +2,7 @@ public class Carriage {
 
     private int id;
     private int maxCapacity;
-    private int carriageWeight;
+    //private int carriageWeight;
     private Train currentTrain;
 
     /**
@@ -10,7 +10,7 @@ public class Carriage {
      * @param maxCapacity
      * @param carriageWeight
      */
-    public Carriage(int id, int maxCapacity, int carriageWeight){
+    public Carriage(int id, int maxCapacity){
         if (isCarriageIdTaken(id)) {
             throw new IllegalArgumentException("Carriage with ID " + id + " already exists.");
         }
@@ -18,7 +18,6 @@ public class Carriage {
             this.id = id;
         }
         this.maxCapacity = maxCapacity;
-        this.carriageWeight = carriageWeight;
         this.currentTrain = null;
     }
 
@@ -34,13 +33,6 @@ public class Carriage {
      */
     public int getMaxCapacity() {
         return maxCapacity;
-    }
-
-    /**
-     * @return
-     */
-    public int getCarriageWeight() {
-        return carriageWeight;
     }
 
     /**
