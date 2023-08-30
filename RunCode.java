@@ -76,11 +76,21 @@ public class RunCode {
           int editTrainId = in.nextInt();
       
           Train editTrain = trainYard.findTrainById(editTrainId);
-          if (editTrain == null) { 
-            System.out.println("Train with ID " + editTrainId + " doesn't exitists.");
+          if (editTrain != null) { 
+            System.out.println("Train with ID " + editTrainId + " was located.");
+            System.out.println("Enter with the object that should be added in the train");
+            System.out.println("1 - For Carriage");
+            System.out.println("2 - For Locomotive");
+            int editOption=in.nextInt();
+            switch(editOption) {
+              case 1:
+                editTrain.Car.addCarriage();
+            }
+
             return;
+          
           }else {
-            System.out.println("Enter the carriage Id: ");
+            System.out.println("Train with ID " + editTrainId + " doesn't exitists.");
           }
           
           break;

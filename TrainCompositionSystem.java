@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-
-
 public class TrainCompositionSystem {
     public static void main(String[] args) {
 

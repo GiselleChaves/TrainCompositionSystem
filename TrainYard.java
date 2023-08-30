@@ -33,16 +33,19 @@ public class TrainYard {
     /**
      * 
      */
-    public static List<Train> getTrains() {
-        return trains;
+    public List<Train> getTrains(TrainYard trainYard) {
+        for (Train train : trainYard.getId()) {
+            return train;
+            }
+        }
     }
 
     /**
      * @param trainId
      */
-    public Train findTrainById(int trainId) { //RETIREI STATIC
+    public Train findTrainById(int trainId, TrainYard trainYard) { //RETIREI STATIC
 
-        for (Train train : TrainYard.getTrains()) {
+        for (Train train : trainYard.getTrains()) {
                 if (train.getId() == trainId) {
                     return train;
                 }
@@ -53,7 +56,7 @@ public class TrainYard {
     /**
      * 
      */
-    public static void listTrains() {
+    public static void listTrains(TrainYard trainYard) {
 
         System.out.println("\nList of Trains:");
 

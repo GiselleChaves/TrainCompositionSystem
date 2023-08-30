@@ -3,7 +3,7 @@ import java.util.List;
 
 public class CarriageGarage {
 
-    private static List<Carriage> carriages = new ArrayList<>();
+    private List<Carriage> carriages = new ArrayList<>();
 
     /**
      * @param carriage
@@ -22,7 +22,7 @@ public class CarriageGarage {
     /**
      * 
      */
-    public static List<Carriage> getCarriages() {
+    public List<Carriage> getCarriages() {
         return carriages;
     }
 }
