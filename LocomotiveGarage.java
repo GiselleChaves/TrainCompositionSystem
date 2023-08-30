@@ -23,7 +23,7 @@ public class LocomotiveGarage {
     /**
      * 
      */
-    public static List<Locomotive> getLocomotives() {
+    public List<Locomotive> getLocomotives() {//RETIREI STATIC
         return locomotives;
     }
 }

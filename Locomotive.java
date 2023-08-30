@@ -3,7 +3,6 @@ public class Locomotive {
     private int id;
     private int maxWeight;
     private int maxNumCarriages;
-    private boolean free;
     private Train currentTrain; // Referência para o trem que faz parte no momento ou null se está livre
 
     /**
@@ -44,20 +43,6 @@ public class Locomotive {
      */
     public Train getCurrentTrain() {
         return currentTrain;
-    }
-
-    /**
-     * @return
-     */
-    public boolean isFree() {
-        return free;
-    }
-
-    /**
-     * @param free
-     */
-    public void setFree(boolean free) {
-        this.free = free;
     }
 
     /**
