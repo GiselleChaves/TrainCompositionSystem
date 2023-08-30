@@ -1,50 +1,94 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class TrainYard {
-    private List<Train> trains;
+public class TrainYard {
 
-    
-    /**
-     * 
-     */
-    public TrainYard() {
-        trains = new ArrayList<>();
-    }
+    private static List<Train> trains = new ArrayList<>();
 
     /**
-     * @param trainId
-     * @return
+     * @param train
      */
-    public static Train findTrainById(Train trainYard, int trainId) {
-        for (Train train : trainYard.getTrains()) {
-                if (train.getId() == trainId) {
-                    return train;
-                }
+    public static void addTrain(Train train) {
+        if (train.getLocomotives().isEmpty()) {
+            System.out.println("Sorry, a train must have at least one locomotive!\n. Try again.");
+            return;
         }
-        return null; // Não encontrou o trem
+        else{
+            trains.add(train);
+        }
+        
     }
 
     /**
      * @param train
      */
-    public void addTrain(Train train) {
-        trains.add(train);
-    }
-
-    /**
-     * @param train
-     */
-    public void removeTrain(Train train) {
+    public static void removeTrain(Train train) {
         trains.remove(train);
     }
 
     /**
-     * @return
+     * 
      */
+    public static List<Train> getTrains() {
+        return trains;
+    }
+
+    /**
+     * @param trainId
+     */
+    public static Train findTrainById(int trainId) {
+
+        for (Train train : TrainYard.getTrains()) {
+                if (train.getId() == trainId) {
+                    return train;
+                }
+        }
+        return null; 
+    }
+
+    /**
+     * 
+     */
+
     public Train getTrains(List<Train> trains) {
         for(Train train : trainYard.getTrains) {
             System.out.println(train);
+
+    public static void listTrains() {
+
+        System.out.println("\nList of Trains:");
+
+        if (TrainYard.getTrains().isEmpty()) {
+            System.out.println("There's no trains in our yard.");
+        }
+
+        else {
+            for (Train train : TrainYard.getTrains()) {
+
+                System.out.println("Train ID: " + train.getId());
+        
+                if (!train.getLocomotives().isEmpty()) {  
+                    System.out.println("Locomotives:");
+                    for (Locomotive locomotive : train.getLocomotives()) {
+                        System.out.println("  Locomotive ID: " + locomotive.getId());
+                    }
+                }
+                else {
+                    System.out.println("  No locomotives associated with this train.");
+                }
+        
+                if (!train.getCarriages().isEmpty()) {
+                    System.out.println("Carriages:");
+                    for (Carriage carriage : train.getCarriages()) {
+                        System.out.println("  Carriage ID: " + carriage.getId());
+                    }
+                }
+                else {
+                    System.out.println("  No carriages associated with this train.");
+                }
+                System.out.println(); 
+            }
+
         }
     }
 }
