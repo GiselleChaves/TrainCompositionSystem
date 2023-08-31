@@ -78,36 +78,78 @@ public class RunCode {
           Train editTrain = trainYard.findTrainById(editTrainId);
           if (editTrain != null) { 
             System.out.println("Train with ID " + editTrainId + " was located.");
-            System.out.println("Enter with the object that should be added in the train");
+            System.out.println("Enter with the object that must be added in the train");
             System.out.println("1 - For Carriage");
             System.out.println("2 - For Locomotive");
             int editOption=in.nextInt();
             switch(editOption) {
               case 1:
-                editTrain.Car.addCarriage();
-            }
+                System.out.println("Enter with the carriage ID.");
+                int editCarriageId = in.nextInt();
 
-            return;
-          
-          }else {
-            System.out.println("Train with ID " + editTrainId + " doesn't exitists.");
-          }
-          
-          break;
+                //TESTE SE A LOCOMOTIVA SUPORTA O PESO DO VAGÃO                
+                
+                if(editTrain.carriageGarage.addCarriage(carriage)) {
+                  System.out.println("The carriage was added");
+                }
+                break;
+              case 2:
+                System.out.println("Enter with the locomotive ID.");
+                int editLocomotiveId = in.nextInt();               
+                
+                if(editTrain.locomotiveGarage.addLocomotive(locomotive)) {
+                  System.out.println("The locomotive was added");
+                }
+                break;
+            }
+          } else {
+            System.out.println("Train with ID " + editTrainId + " doesn't exitists."); 
+          }        
         case 3:
-          TrainYard.listTrains();
+          trainYard.listTrains();
           break;
         case 4:
           //disassembleTrain();
-          break;
+          System.out.print("Enter the train ID: ");
+          int disassembleTrainId = in.nextInt();
+      
+          Train disassembleTrain = trainYard.findTrainById(disassembleTrainId);
+          if (disassembleTrain != null) { 
+            System.out.println("Train with ID " + disassembleTrainId + " was located.");
+            System.out.println("Enter the object that must be removed from the train");
+            System.out.println("1 - For Carriage");
+            System.out.println("2 - For Locomotive");
+            int disassembleOption=in.nextInt();
+            switch(disassembleOption) {
+              case 1:
+                System.out.println("Enter with the carriage ID.");
+                int disassembleCarriageId = in.nextInt();
+
+                //TESTE SE A LOCOMOTIVA SUPORTA O PESO DO VAGÃO                
+                
+                if(disassembleTrain.carriageGarage.removeCarriage(carriage)) {
+                  System.out.println("The carriage was removed");
+                }
+                break;
+              case 2:
+                System.out.println("Enter with the locomotive ID.");
+                int editLocomotiveId = in.nextInt();               
+                
+                if(disassembleTrain.locomotiveGarage.removeLocomotive(locomotive)) {
+                  System.out.println("The locomotive was added");
+                }
+                break;
+            }
+          }
         case 5:
           System.out.println("Exiting the program.");
           break;
         default:
           System.out.println("Invalid option.");
       }
-      
+    
     } while (option != 5);
   }
 }
+
 

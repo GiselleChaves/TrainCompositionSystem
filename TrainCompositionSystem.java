@@ -1,16 +1,12 @@
 public class TrainCompositionSystem {
     public static void main(String[] args) {
 
-<<<<<<< HEAD
         TrainYard trainYard = new TrainYard();
         LocomotiveGarage locomotiveGarage = new LocomotiveGarage();
         CarriageGarage carraigeGarage = new CarriageGarage();
 
 
         Locomotive loc1 = new Locomotive(1, 100, 2);
-=======
-        /*Locomotive loc1 = new Locomotive(1, 100, 2);
->>>>>>> main
         Locomotive loc2 = new Locomotive(2, 50, 1);
         Locomotive loc3 = new Locomotive(3, 300, 5);
         Locomotive loc4 = new Locomotive(4, 170, 4);
@@ -24,16 +20,9 @@ public class TrainCompositionSystem {
         LocomotiveGarage.addLocomotive(loc2);
         LocomotiveGarage.addLocomotive(loc3);
         LocomotiveGarage.addLocomotive(loc4);
-<<<<<<< HEAD
         LocomotiveGarage.addLocomotive(loc5);
     
 
         RunCode.trainCompositionSystem();
-=======
-        LocomotiveGarage.addLocomotive(loc5);*/   
-
-        new RunCode().trainCompositionSystem(); //INSTANCIANDO SEM CRIAR VARIAVEL
-
->>>>>>> main
     }  
 }

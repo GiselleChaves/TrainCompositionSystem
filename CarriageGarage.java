@@ -8,7 +8,7 @@ public class CarriageGarage {
     /**
      * @param carriage
      */
-    public void addCarriage(Carriage carriage) { //RETIREI STATIC
+    public void addCarriage(Carriage carriage, int id) { //RETIREI STATIC
         carriages.add(carriage);
     }
 

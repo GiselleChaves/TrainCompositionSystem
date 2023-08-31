@@ -3,8 +3,8 @@ import java.util.List;
 
 public class TrainYard {
 
-    private static List<Train> trains;
-
+    private ArrayList<Train> trains; //RETIREI STATIC
+    
     public TrainYard() {
         trains = new ArrayList<>();
     }
@@ -33,11 +33,9 @@ public class TrainYard {
     /**
      * 
      */
-    public List<Train> getTrains(TrainYard trainYard) {
-        for (Train train : trainYard.getId()) {
-            return train;
-            }
-        }
+    public ArrayList<Train> getTrains() {
+        ArrayList<Train> trainsClone = trains.clone(); //
+        return trainsClone;
     }
 
     /**
@@ -56,25 +54,26 @@ public class TrainYard {
     /**
      * 
      */
-<<<<<<< HEAD
 
-    public Train getTrains(List<Train> trains) {
-        for(Train train : trainYard.getTrains) {
+    public Train getTrains(ArrayList<Train> trains) {
+        for(Train train : trains.getTrains) {
             System.out.println(train);
+        }
+    }
 
-    public static void listTrains() {
-=======
-    public static void listTrains(TrainYard trainYard) {
->>>>>>> main
+    /**
+     * 
+     */
+    public void listTrains() {
 
         System.out.println("\nList of Trains:");
 
-        if (TrainYard.getTrains().isEmpty()) {
+        if (trainYard.getTrains().isEmpty()) {
             System.out.println("There's no trains in our yard.");
         }
 
         else {
-            for (Train train : TrainYard.getTrains()) {
+            for (Train train : trainYard.getTrains()) {
 
                 System.out.println("Train ID: " + train.getId());
         
