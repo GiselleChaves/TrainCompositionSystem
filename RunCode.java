@@ -89,7 +89,7 @@ public class RunCode {
 
                 //TESTE SE A LOCOMOTIVA SUPORTA O PESO DO VAGÃO                
                 
-                if(editTrain.carriageGarage.addCarriage(carriage)) {
+                if(editTrain.addCarriage(editCarriageId)) {
                   System.out.println("The carriage was added");
                 }
                 break;
@@ -97,7 +97,7 @@ public class RunCode {
                 System.out.println("Enter with the locomotive ID.");
                 int editLocomotiveId = in.nextInt();               
                 
-                if(editTrain.locomotiveGarage.addLocomotive(locomotive)) {
+                if(editTrain.addLocomotive(editLocomotiveId)) {
                   System.out.println("The locomotive was added");
                 }
                 break;

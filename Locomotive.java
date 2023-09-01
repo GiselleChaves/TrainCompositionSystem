@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Locomotive {
 
     private int id;
@@ -53,14 +55,15 @@ public class Locomotive {
     }
 
     /**
-     * @param locomotiveId
+     * @param idToCheck
      */
-    public static Locomotive findLocomotiveById(int locomotiveId) {
-        for (Locomotive locomotive : LocomotiveGarage.getLocomotives()) {
-            if (locomotive.getId() == locomotiveId) {
-                return locomotive;
+    public boolean isCarriageIdTaken(int idToCheck) {
+
+        for(Locomotive locomotive : getLocomotive()){
+            if(idToCheck == locomotive.getId()){
+                return true;
             }
         }
-        return null;
+        return false;
     }
 }

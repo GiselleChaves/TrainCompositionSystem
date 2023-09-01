@@ -48,17 +48,4 @@ public class Carriage {
     public void setCurrentTrain(Train currentTrain) {
         this.currentTrain = currentTrain;
     }
-
-    /**
-     * @param idToCheck
-     */
-    private boolean isCarriageIdTaken(int idToCheck) {
-
-        for(Carriage carriage : CarriageGarage.getCarriages()){
-            if(idToCheck == carriage.getId()){
-                return true;
-            }
-        }
-        return false;
-    }
 }

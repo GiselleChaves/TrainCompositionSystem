@@ -3,10 +3,10 @@ import java.util.List;
 
 public class Train {
     private int id; 
-    public List<Locomotive> locomotives;
-    public List<Carriage> carriages;
-    public CarriageGarage carriageGarage;
-    public LocomotiveGarage locomotiveGarage;
+    private List<Locomotive> locomotives;
+    private List<Carriage> carriages;
+    private CarriageGarage carriageGarage;
+    private LocomotiveGarage locomotiveGarage;
 
     /**
      * @param id
@@ -38,6 +38,22 @@ public class Train {
      */
     public List<Carriage> getCarriages() {
         return carriages;
+    }
+
+    public boolean addCarriage(int carriageId) {
+        if(carriageGarage.isCarriageIdTaken(carriageId)) {
+            carriages.add(null);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean addLocomotive(int locomotiveId) {
+        if(locomotiveGarage.isLocomotiveIdTaken(locomotiveId)) {
+            carriages.add(null);
+            return true;
+        }
+        return false;
     }
 }
 
