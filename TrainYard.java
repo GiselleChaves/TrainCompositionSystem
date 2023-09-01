@@ -42,12 +42,13 @@ public class TrainYard {
     /**
      * @param trainId
      */
-    public Train findTrainById(ArrayList<Train> trains, int trainId) {
-        for(Train train : trains.getTrains) {
+    public Train findTrainById(int trainId) {
+        for(Train train : this.getTrainsList()) {
             if(train.getId() == trainId) {
                 return train;
             }
         }
+        return null;
     }
 
     /**
