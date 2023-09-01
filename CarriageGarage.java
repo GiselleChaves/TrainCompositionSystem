@@ -3,26 +3,26 @@ import java.util.List;
 
 public class CarriageGarage {
 
-    private static List<Carriage> carriages = new ArrayList<>();
+    private List<Carriage> carriages = new ArrayList<>();
 
     /**
      * @param carriage
      */
-    public static void addCarriage(Carriage carriage) {
+    public void addCarriage(Carriage carriage, int id) { //RETIREI STATIC
         carriages.add(carriage);
     }
 
     /**
      * @param carriage
      */
-    public static void removeCarriage(Carriage carriage) {
+    public void removeCarriage(Carriage carriage) { //RETIREI STATIC
         carriages.remove(carriage);
     }
 
     /**
      * 
      */
-    public static List<Carriage> getCarriages() {
+    public List<Carriage> getCarriages() {
         return carriages;
     }
 }
