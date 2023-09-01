@@ -4,7 +4,7 @@ public class TrainCompositionSystem {
         TrainYard trainYard = new TrainYard();
         LocomotiveGarage locomotiveGarage = new LocomotiveGarage();
         CarriageGarage carraigeGarage = new CarriageGarage();
-
+        RunCode runCode = new RunCode();
 
         Locomotive loc1 = new Locomotive(1, 100, 2);
         Locomotive loc2 = new Locomotive(2, 50, 1);
@@ -23,6 +23,6 @@ public class TrainCompositionSystem {
         LocomotiveGarage.addLocomotive(loc5);
     
 
-        RunCode.trainCompositionSystem();
+        runCode.trainCompositionSystem();
     }  
 }

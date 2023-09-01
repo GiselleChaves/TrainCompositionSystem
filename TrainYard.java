@@ -33,31 +33,20 @@ public class TrainYard {
     /**
      * 
      */
-    public ArrayList<Train> getTrains() {
-        ArrayList<Train> trainsClone = trains.clone(); //
+    public ArrayList<Train> getTrainsList() {
+        //Clonando a lista para passar o clone 
+        ArrayList<Train> trainsClone = (ArrayList<Train>)trains.clone();
         return trainsClone;
     }
 
     /**
      * @param trainId
      */
-    public Train findTrainById(int trainId, TrainYard trainYard) { //RETIREI STATIC
-
-        for (Train train : trainYard.getTrains()) {
-                if (train.getId() == trainId) {
-                    return train;
-                }
-        }
-        return null; 
-    }
-
-    /**
-     * 
-     */
-
-    public Train getTrains(ArrayList<Train> trains) {
+    public Train findTrainById(ArrayList<Train> trains, int trainId) {
         for(Train train : trains.getTrains) {
-            System.out.println(train);
+            if(train.getId() == trainId) {
+                return train;
+            }
         }
     }
 
@@ -65,15 +54,12 @@ public class TrainYard {
      * 
      */
     public void listTrains() {
-
         System.out.println("\nList of Trains:");
 
         if (trainYard.getTrains().isEmpty()) {
             System.out.println("There's no trains in our yard.");
-        }
-
-        else {
-            for (Train train : trainYard.getTrains()) {
+        } else {
+            for (Train train : trainYard.getTrainsLi()) {
 
                 System.out.println("Train ID: " + train.getId());
         
@@ -82,8 +68,7 @@ public class TrainYard {
                     for (Locomotive locomotive : train.getLocomotives()) {
                         System.out.println("  Locomotive ID: " + locomotive.getId());
                     }
-                }
-                else {
+                } else {
                     System.out.println("  No locomotives associated with this train.");
                 }
         
@@ -92,13 +77,11 @@ public class TrainYard {
                     for (Carriage carriage : train.getCarriages()) {
                         System.out.println("  Carriage ID: " + carriage.getId());
                     }
-                }
-                else {
+                } else {
                     System.out.println("  No carriages associated with this train.");
                 }
                 System.out.println(); 
             }
-
         }
     }
 }
