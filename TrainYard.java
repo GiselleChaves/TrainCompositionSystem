@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class TrainYard {
 
@@ -57,10 +56,10 @@ public class TrainYard {
     public void listTrains() {
         System.out.println("\nList of Trains:");
 
-        if (trainYard.getTrains().isEmpty()) {
+        if (this.getTrainsList().isEmpty()) {
             System.out.println("There's no trains in our yard.");
         } else {
-            for (Train train : trainYard.getTrainsLi()) {
+            for (Train train : this.getTrainsList()) {
 
                 System.out.println("Train ID: " + train.getId());
         
