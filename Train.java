@@ -40,6 +40,10 @@ public class Train {
         return carriages;
     }
 
+    /**
+     * @param carriageId
+     * @return
+     */
     public boolean addCarriage(int carriageId) {
         if(carriageGarage.isCarriageIdTaken(carriageId)) {
             carriages.add(null);
@@ -48,9 +52,37 @@ public class Train {
         return false;
     }
 
+    /**
+     * @param locomotiveId
+     * @return
+     */
     public boolean addLocomotive(int locomotiveId) {
         if(locomotiveGarage.isLocomotiveIdTaken(locomotiveId)) {
             carriages.add(null);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @param carriageId
+     * @return
+     */
+    public boolean removeCarriage(int carriageId) {
+        if(carriageGarage.isCarriageIdTaken(carriageId)) {
+            carriages.remove(carriageId);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @param carriageId
+     * @return
+     */
+    public boolean removeLocomotive(int locomotiveId) {
+        if(carriageGarage.isCarriageIdTaken(locomotiveId)) {
+            locomotives.remove(locomotiveId);
             return true;
         }
         return false;

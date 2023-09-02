@@ -53,17 +53,4 @@ public class Locomotive {
     public void setCurrentTrain(Train currentTrain) {
         this.currentTrain = currentTrain;
     }
-
-    /**
-     * @param idToCheck
-     */
-    public boolean isCarriageIdTaken(int idToCheck) {
-
-        for(Locomotive locomotive : getLocomotive()){
-            if(idToCheck == locomotive.getId()){
-                return true;
-            }
-        }
-        return false;
-    }
 }

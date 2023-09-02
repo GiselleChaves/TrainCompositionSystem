@@ -11,12 +11,7 @@ public class Carriage {
      * @param carriageWeight
      */
     public Carriage(int id, int maxCapacity){
-        if (isCarriageIdTaken(id)) {
-            throw new IllegalArgumentException("Carriage with ID " + id + " already exists.");
-        }
-        else{
-            this.id = id;
-        }
+        this.id = id;
         this.maxCapacity = maxCapacity;
         this.currentTrain = null;
     }

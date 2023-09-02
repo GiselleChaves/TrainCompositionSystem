@@ -27,6 +27,10 @@ public class LocomotiveGarage {
         return locomotives;
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public Locomotive findLocomotive(int id) {
         for(Locomotive locomotive : this.locomotives) {
             if(locomotive.getId() == id) {

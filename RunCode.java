@@ -56,7 +56,7 @@ public class RunCode {
           System.out.print("Enter the ID of the first locomotive: ");
           int firstLocomotiveId = in.nextInt();
           
-          Locomotive firstLocomotive = Locomotive.findLocomotiveById(firstLocomotiveId);
+          Locomotive firstLocomotive = train.findLocomotive(firstLocomotiveId);
       
           if (firstLocomotive == null) {
               System.out.println("Locomotive with ID " + firstLocomotiveId + " not found.");
@@ -127,15 +127,15 @@ public class RunCode {
 
                 //TESTE SE A LOCOMOTIVA SUPORTA O PESO DO VAGÃO                
                 
-                if(disassembleTrain.carriageGarage.removeCarriage(carriage)) {
+                if(disassembleTrain.removeCarriage(disassembleCarriageId)) {
                   System.out.println("The carriage was removed");
                 }
                 break;
               case 2:
                 System.out.println("Enter with the locomotive ID.");
-                int editLocomotiveId = in.nextInt();               
+                int disassembleLocomotiveId = in.nextInt();               
                 
-                if(disassembleTrain.locomotiveGarage.removeLocomotive(locomotive)) {
+                if(disassembleTrain.removeLocomotive(disassembleLocomotiveId)) {
                   System.out.println("The locomotive was added");
                 }
                 break;

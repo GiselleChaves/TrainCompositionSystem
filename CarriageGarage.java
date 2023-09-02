@@ -39,6 +39,10 @@ public class CarriageGarage {
         return false;
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public Carriage findCarriage(int id) {
         for(Carriage carriage : this.carriages) {
             if(carriage.getId() == id) {
