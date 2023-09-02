@@ -33,7 +33,8 @@ public class TrainYard {
      * 
      */
     public ArrayList<Train> getTrainsList() {
-        ArrayList<Train> trainsClone = new ArrayList<>(trains); // Cria uma cópia da lista original
+        //Clonando a lista para passar o clone 
+        ArrayList<Train> trainsClone = (ArrayList<Train>)trains.clone();
         return trainsClone;
     }
 
@@ -48,7 +49,6 @@ public class TrainYard {
         }
         return null;
     }
-    
 
     /**
      * 

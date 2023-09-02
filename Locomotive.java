@@ -12,13 +12,8 @@ public class Locomotive {
      * @param maxWeight
      * @param maxNumCarriages
      */
-    public Locomotive(int id, int maxWeight, int maxNumCarriages, LocomotiveGarage locomotiveGarage) {
-        if (isLocomotiveIdTaken(locomotiveGarage, id)) {
-            throw new IllegalArgumentException("Locomotive with ID " + id + " already exists.");
-        }
-        else{
-            this.id = id;
-        }
+    public Locomotive(int id, int maxWeight, int maxNumCarriages) {
+        this.id = id;
         this.maxWeight = maxWeight;
         this.maxNumCarriages = maxNumCarriages;
         this.currentTrain = null; // Começa sem associação a um trem

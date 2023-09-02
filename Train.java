@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Train {
-
     private int id; 
     private List<Locomotive> locomotives;
     private List<Carriage> carriages;
@@ -18,8 +17,6 @@ public class Train {
         this.carriages = new ArrayList<>();
         this.carriageGarage = new CarriageGarage();
         this.locomotiveGarage = new LocomotiveGarage();
-        this.maxCapacityOfCarriagesInTrain = 0;
-        this.maxWeightCapacityOfTrain = 0;
     }
 
     /**
@@ -91,5 +88,3 @@ public class Train {
         return false;
     }
 }
-
-

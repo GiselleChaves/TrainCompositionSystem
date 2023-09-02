@@ -2,6 +2,7 @@ public class Carriage {
 
     private int id;
     private int maxCapacity;
+    //private int carriageWeight;
     private Train currentTrain;
 
     /**
@@ -28,7 +29,6 @@ public class Carriage {
     public int getMaxCapacity() {
         return maxCapacity;
     }
-
 
     /**
      * @return
