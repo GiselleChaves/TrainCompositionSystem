@@ -26,9 +26,26 @@ public class CarriageGarage {
         return carriages;
     }
 
-    public Carriage findCarriageById(int carriageId) { 
-        for (Carriage carriage : carriages) {
-            if (carriage.getId() == carriageId) {
+    /**
+     * @param idToCheck
+     */
+    public boolean isCarriageIdTaken(int idToCheck) {
+
+        for(Carriage carriage : getCarriages()){
+            if(idToCheck == carriage.getId()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param id
+     * @return
+     */
+    public Carriage findCarriage(int id) {
+        for(Carriage carriage : this.carriages) {
+            if(carriage.getId() == id) {
                 return carriage;
             }
         }

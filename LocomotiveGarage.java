@@ -28,14 +28,28 @@ public class LocomotiveGarage {
     }
 
     /**
-     * @param locomotiveId
+     * @param id
+     * @return
      */
-    public Locomotive findLocomotiveById(int locomotiveId) {
-        for (Locomotive locomotive : locomotives) {
-            if (locomotive.getId() == locomotiveId) {
+    public Locomotive findLocomotive(int id) {
+        for(Locomotive locomotive : this.locomotives) {
+            if(locomotive.getId() == id) {
                 return locomotive;
             }
         }
         return null;
+    }
+
+    /**
+     * @param idToCheck
+     */
+    public boolean isLocomotiveIdTaken(int idToCheck) {
+
+        for(Locomotive locomotive : getLocomotives()){
+            if(idToCheck == locomotive.getId()){
+                return true;
+            }
+        }
+        return false;
     }
 }

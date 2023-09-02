@@ -41,12 +41,12 @@ public class TrainYard {
      * @param trainId
      */
     public Train findTrainById(int trainId) {
-        for (Train train : trains) {
-            if (train.getId() == trainId) {
+        for(Train train : this.getTrainsList()) {
+            if(train.getId() == trainId) {
                 return train;
             }
         }
-        return null; // Retornar null se o trem não for encontrado.
+        return null;
     }
     
 
@@ -55,11 +55,11 @@ public class TrainYard {
      */
     public void listTrains() {
         System.out.println("\nList of Trains:");
-    
-        if (getTrainsList().isEmpty()) {
+
+        if (this.getTrainsList().isEmpty()) {
             System.out.println("There's no trains in our yard.");
         } else {
-            for (Train train : getTrainsList()) { 
+            for (Train train : this.getTrainsList()) {
 
                 System.out.println("Train ID: " + train.getId());
         

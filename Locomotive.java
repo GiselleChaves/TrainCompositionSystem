@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Locomotive {
 
     private int id;
@@ -55,18 +57,5 @@ public class Locomotive {
      */
     public void setCurrentTrain(Train currentTrain) {
         this.currentTrain = currentTrain;
-    }
-
-        /**
-     * @param idToCheck
-     */
-    private boolean isLocomotiveIdTaken(LocomotiveGarage locomotiveGarage, int idToCheck) {
-
-        for(Locomotive locomotive : locomotiveGarage.getLocomotives()){
-            if(idToCheck == locomotive.getId()){
-                return true;
-            }
-        }
-        return false;
     }
 }
