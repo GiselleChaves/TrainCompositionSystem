@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class TrainYard {
 
@@ -34,32 +33,33 @@ public class TrainYard {
      * 
      */
     public ArrayList<Train> getTrainsList() {
-        //Clonando a lista para passar o clone 
-        ArrayList<Train> trainsClone = (ArrayList<Train>)trains.clone();
+        ArrayList<Train> trainsClone = new ArrayList<>(trains); // Cria uma cópia da lista original
         return trainsClone;
     }
 
     /**
      * @param trainId
      */
-    public Train findTrainById(ArrayList<Train> trains, int trainId) {
-        for(Train train : trains.getTrains) {
-            if(train.getId() == trainId) {
+    public Train findTrainById(int trainId) {
+        for (Train train : trains) {
+            if (train.getId() == trainId) {
                 return train;
             }
         }
+        return null; // Retornar null se o trem não for encontrado.
     }
+    
 
     /**
      * 
      */
     public void listTrains() {
         System.out.println("\nList of Trains:");
-
-        if (trainYard.getTrains().isEmpty()) {
+    
+        if (getTrainsList().isEmpty()) {
             System.out.println("There's no trains in our yard.");
         } else {
-            for (Train train : trainYard.getTrainsLi()) {
+            for (Train train : getTrainsList()) { 
 
                 System.out.println("Train ID: " + train.getId());
         

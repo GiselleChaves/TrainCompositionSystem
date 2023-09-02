@@ -10,8 +10,13 @@ public class Locomotive {
      * @param maxWeight
      * @param maxNumCarriages
      */
-    public Locomotive(int id, int maxWeight, int maxNumCarriages) {
-        this.id = id;
+    public Locomotive(int id, int maxWeight, int maxNumCarriages, LocomotiveGarage locomotiveGarage) {
+        if (isLocomotiveIdTaken(locomotiveGarage, id)) {
+            throw new IllegalArgumentException("Locomotive with ID " + id + " already exists.");
+        }
+        else{
+            this.id = id;
+        }
         this.maxWeight = maxWeight;
         this.maxNumCarriages = maxNumCarriages;
         this.currentTrain = null; // Começa sem associação a um trem
@@ -52,15 +57,16 @@ public class Locomotive {
         this.currentTrain = currentTrain;
     }
 
-    /**
-     * @param locomotiveId
+        /**
+     * @param idToCheck
      */
-    public static Locomotive findLocomotiveById(int locomotiveId) {
-        for (Locomotive locomotive : LocomotiveGarage.getLocomotives()) {
-            if (locomotive.getId() == locomotiveId) {
-                return locomotive;
+    private boolean isLocomotiveIdTaken(LocomotiveGarage locomotiveGarage, int idToCheck) {
+
+        for(Locomotive locomotive : locomotiveGarage.getLocomotives()){
+            if(idToCheck == locomotive.getId()){
+                return true;
             }
         }
-        return null;
+        return false;
     }
 }

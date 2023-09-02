@@ -8,7 +8,7 @@ public class CarriageGarage {
     /**
      * @param carriage
      */
-    public void addCarriage(Carriage carriage, int id) { //RETIREI STATIC
+    public void addCarriage(Carriage carriage) { //RETIREI STATIC
         carriages.add(carriage);
     }
 
@@ -24,5 +24,14 @@ public class CarriageGarage {
      */
     public List<Carriage> getCarriages() {
         return carriages;
+    }
+
+    public Carriage findCarriageById(int carriageId) { 
+        for (Carriage carriage : carriages) {
+            if (carriage.getId() == carriageId) {
+                return carriage;
+            }
+        }
+        return null;
     }
 }

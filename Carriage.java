@@ -2,7 +2,6 @@ public class Carriage {
 
     private int id;
     private int maxCapacity;
-    //private int carriageWeight;
     private Train currentTrain;
 
     /**
@@ -10,8 +9,8 @@ public class Carriage {
      * @param maxCapacity
      * @param carriageWeight
      */
-    public Carriage(int id, int maxCapacity){
-        if (isCarriageIdTaken(id)) {
+    public Carriage(int id, int maxCapacity, CarriageGarage carriageGarage){
+        if (isCarriageIdTaken(carriageGarage, id)) {
             throw new IllegalArgumentException("Carriage with ID " + id + " already exists.");
         }
         else{
@@ -35,6 +34,7 @@ public class Carriage {
         return maxCapacity;
     }
 
+
     /**
      * @return
      */
@@ -52,9 +52,9 @@ public class Carriage {
     /**
      * @param idToCheck
      */
-    private boolean isCarriageIdTaken(int idToCheck) {
+    private boolean isCarriageIdTaken(CarriageGarage carriageGarage, int idToCheck) {
 
-        for(Carriage carriage : CarriageGarage.getCarriages()){
+        for(Carriage carriage : carriageGarage.getCarriages()){
             if(idToCheck == carriage.getId()){
                 return true;
             }

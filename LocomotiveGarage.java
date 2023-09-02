@@ -3,12 +3,12 @@ import java.util.List;
 
 public class LocomotiveGarage {
 
-    private static List<Locomotive> locomotives = new ArrayList<>(); 
+    private List<Locomotive> locomotives = new ArrayList<>(); 
 
     /**
      * @param locomotive
      */
-    public static void addLocomotive(Locomotive locomotive) {
+    public void addLocomotive(Locomotive locomotive) {
         locomotives.add(locomotive);
     }
 
@@ -16,7 +16,7 @@ public class LocomotiveGarage {
     /**
      * @param locomotive
      */
-    public static void removeLocomotive(Locomotive locomotive) {
+    public void removeLocomotive(Locomotive locomotive) {
         locomotives.remove(locomotive);
     }
 
@@ -25,5 +25,17 @@ public class LocomotiveGarage {
      */
     public List<Locomotive> getLocomotives() {//RETIREI STATIC
         return locomotives;
+    }
+
+    /**
+     * @param locomotiveId
+     */
+    public Locomotive findLocomotiveById(int locomotiveId) {
+        for (Locomotive locomotive : locomotives) {
+            if (locomotive.getId() == locomotiveId) {
+                return locomotive;
+            }
+        }
+        return null;
     }
 }
