@@ -1,6 +1,12 @@
 import java.util.Scanner;
 import java.util.List;
 
+/*
+ * Authors: Giselle Chaves e Ashiley Bianca 
+ * Version: Semptember/2023
+ * Discilpine: POO
+ * Professor: Bernardo Copstein
+ */
 public class RunCode {
     private Scanner in;
     private TrainYard trainYard;
