@@ -8,7 +8,7 @@ Professor: Bernardo Copstein
 
 ### Authors
 
-| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/37356058?v=4" width=115><br><sub>Giselle Chaves</sub>](https://github.com/GiselleChaves) |     | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/97049778?v=4" width=115><br><sub>Ashiley Bianca</sub>](https://github.com/ashileybianca) |
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/112208391?v=4" width=115><br><sub>Giselle Chaves</sub>](https://github.com/GiselleChaves) |     | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/97049778?v=4" width=115><br><sub>Ashiley Bianca</sub>](https://github.com/ashileybianca) |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------: | :-: | :--------------------------------------------------------------------------------------------------------------------------------------------------------: |
 
 <hr>
