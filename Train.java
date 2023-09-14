@@ -6,8 +6,8 @@ import java.util.List;
  */
 public class Train {
     private int id;
-    private List<Locomotive> locomotives;
-    private List<Wagon> wagons;
+    //private List<Locomotive> locomotives;
+    //private List<Wagon> wagons;
 
     private int maxWagons; // Número máximo de vagões que um trem consegue puxar
     private int maxWeight; // Número máximo de peso que consegue puxar
@@ -30,8 +30,6 @@ public class Train {
     }
 
     /**
-     * Obtém o ID do trem.
-     *
      * @return O ID do trem.
      */
     public int getId() {
@@ -39,17 +37,18 @@ public class Train {
     }
 
     /**
-     * Obtém a lista de locomotivas do trem.
-     *
      * @return A lista de locomotivas do trem.
      */
     public List<Locomotive> getLocomotives() {
         return locomotives;
     }
 
+    public Locomotive getLocomotive(int id) {
+        Locomotive locomotiveAux = null;
+        for(RailwayCar rc:)
+    }
+
     /**
-     * Obtém a lista de vagões do trem.
-     *
      * @return A lista de vagões do trem.
      */
     public List<Wagon> getWagons() {
@@ -57,8 +56,6 @@ public class Train {
     }
 
     /**
-     * Obtém o número máximo de vagões que o trem pode puxar.
-     *
      * @return O número máximo de vagões que o trem pode puxar.
      */
     public int getMaxWagons() {
@@ -66,8 +63,6 @@ public class Train {
     }
 
     /**
-     * Define o número máximo de vagões que o trem pode puxar.
-     *
      * @param maxWagons O número máximo de vagões que o trem pode puxar.
      */
     public void setMaxWagons(int maxWagons) {
@@ -75,8 +70,6 @@ public class Train {
     }
 
     /**
-     * Obtém o peso máximo que o trem pode puxar.
-     *
      * @return O peso máximo que o trem pode puxar.
      */
     public int getMaxWeight() {
@@ -84,8 +77,6 @@ public class Train {
     }
 
     /**
-     * Define o peso máximo que o trem pode puxar.
-     *
      * @param maxWeight O peso máximo que o trem pode puxar.
      */
     public void setMaxWeight(int maxWeight) {
@@ -127,8 +118,6 @@ public class Train {
     }
 
     /**
-     * Calcula a quantidade de peso disponível para puxar adicionando vagões.
-     *
      * @return A quantidade de peso disponível para puxar após levar em consideração os vagões já conectados.
      */
     public int availableWeightForPulling() {
@@ -148,8 +137,6 @@ public class Train {
     }
 
     /**
-     * Calcula a quantidade disponível de vagões que podem ser conectados ao trem.
-     *
      * @return A quantidade de vagões que podem ser adicionados à composição do trem.
      */
     public int availableWagonQuantity() {
@@ -283,5 +270,4 @@ public class Train {
         System.out.println("No locomotives to remove from this train.");
         return false;
     }
-    
 }

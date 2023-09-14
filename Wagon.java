@@ -1,7 +1,7 @@
 /**
  * Classe que representa um vagão utilizado em composições de trens.
  */
-public class Wagon {
+public class Wagon extends RailwayCar{
 
     private int id;
     private int maxCapacity;
@@ -13,24 +13,14 @@ public class Wagon {
      * @param id           O ID do vagão.
      * @param maxCapacity  A capacidade máxima do vagão.
      */
-    public Wagon(int id, int maxCapacity){
-        this.id = id;
-        this.maxCapacity = maxCapacity;
-        this.currentTrain = null; // Começa sem associação a um trem
+    public Wagon(int id, int maxCapacity, Train currentTrain){
+        super(id, currentTrain);
+        this.maxCapacity = maxCapacity; 
     }
 
-    /**
-     * Obtém o ID do vagão.
-     *
-     * @return O ID do vagão.
-     */
-    public int getId() {
-        return id;
-    }
+    
 
     /**
-     * Obtém a capacidade máxima do vagão.
-     *
      * @return A capacidade máxima do vagão.
      */
     public int getMaxCapacity() {
@@ -38,31 +28,11 @@ public class Wagon {
     }
 
     /**
-     * Obtém o trem atual associado a este vagão.
-     *
-     * @return O trem atual associado a este vagão.
-     */
-    public Train getCurrentTrain() {
-        return currentTrain;
-    }
-
-    /**
-     * Define o trem atual associado a este vagão.
-     *
-     * @param currentTrain O trem atual associado a este vagão.
-     */
-    public void setCurrentTrain(Train currentTrain) {
-        this.currentTrain = currentTrain;
-    }
-
-    /**
-     * Retorna uma representação em formato de string deste vagão, incluindo seu ID, capacidade máxima e trem atual.
-     *
-     * @return Uma representação em formato de string deste vagão.
+     * @return Uma representação em string do vagão e de atributos herdados do CarroFerroviário
      */
     @Override
     public String toString() {
-        return "Wagon [id=" + id + ", maxCapacity=" + maxCapacity + ", currentTrain=" + currentTrain + "]";
+        return "Wagon: " + super.toString() + ", Maximum Capacity:" + maxCapacity;
     }
     
 }
