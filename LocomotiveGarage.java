@@ -6,36 +6,12 @@ import java.util.List;
  */
 public class LocomotiveGarage {
 
-    private List<Locomotive> locomotives = new ArrayList<>(); 
+    
 
-    /**
-     * Adiciona uma locomotiva à garagem.
-     *
-     * @param locomotive A locomotiva a ser adicionada à garagem.
-     */
-    public void addLocomotive(Locomotive locomotive) {
-        locomotives.add(locomotive);
-    }
+    
 
 
-    /**
-     * Remove uma locomotiva da garagem.
-     *
-     * @param locomotive A locomotiva a ser removida da garagem.
-     */
-    public void removeLocomotive(Locomotive locomotive) {
-        locomotives.remove(locomotive);
-    }
-
-    /**
-     * Obtém a lista de locomotivas armazenadas na garagem.
-     *
-     * @return A lista de locomotivas na garagem.
-     */
-    public List<Locomotive> getLocomotives() {
-        return locomotives;
-    }
-
+    
     /**
      * Encontra uma locomotiva na garagem pelo seu ID.
      *

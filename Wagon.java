@@ -18,8 +18,6 @@ public class Wagon extends RailwayCar{
         this.maxCapacity = maxCapacity; 
     }
 
-    
-
     /**
      * @return A capacidade máxima do vagão.
      */

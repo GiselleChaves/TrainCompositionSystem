@@ -8,32 +8,8 @@ public class WagonGarage {
 
     private List<Wagon> wagons = new ArrayList<>();
 
-    /**
-     * Adiciona um vagão à garagem.
-     *
-     * @param wagon O vagão a ser adicionado.
-     */
-    public void addWagon(Wagon wagon) {
-        wagons.add(wagon);
-    }
 
-    /**
-     * Remove um vagão da garagem.
-     *
-     * @param wagon O vagão a ser removido.
-     */
-    public void removeWagon(Wagon wagon) {
-        wagons.remove(wagon);
-    }
-
-    /**
-     * Obtém a lista de vagões na garagem.
-     *
-     * @return Uma lista de vagões na garagem.
-     */
-    public List<Wagon> getWagons() {
-        return wagons;
-    }
+    
 
     /**
      * Encontra um vagão na garagem com base no seu ID.
