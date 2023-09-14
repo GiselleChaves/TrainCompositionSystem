@@ -23,17 +23,17 @@ public class RailwayCarGarage {
   }
 
   /**
-     * @return Uma lista de vagões na garagem.
-     */
-    public List<RailwayCar> getWagons() {
-      List<RailwayCar> wagons = new ArrayList<RailwayCar>();
-      for(RailwayCar rc : railwayCars) {
-        if(rc instanceof Wagon) {
-          wagons = (List<RailwayCar>) rc;
-        }
+  * @return Uma lista do tipo passado por parâmetro (Locomotive ou Wagon) que estão na garagem.
+  */
+  public List<RailwayCar> getRailwayCarsFromType(Class<?> type) {
+    List<RailwayCar> list = new ArrayList<RailwayCar>();
+    for(RailwayCar rc : railwayCars) {
+      if(type.isInstance(rc)) {
+        list.add(rc);
       }
-      return wagons;
     }
+    return list;
+  }
 
   /**
    * @param int id 

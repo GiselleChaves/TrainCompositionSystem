@@ -10,15 +10,12 @@ import java.util.List;
 public class RunCode {
     private Scanner in;
     private TrainYard trainYard;
-    private WagonGarage wagonGarage; 
-    private LocomotiveGarage locomotiveGarage; 
-    
+    private RailwayCarGarage railwayCarGarage;    
 
     public RunCode() {
         trainYard = new TrainYard();
         in = new Scanner(System.in);
-        wagonGarage = new WagonGarage();
-        locomotiveGarage = new LocomotiveGarage(); 
+        RailwayCarGarage railwayCarGarage = new RailwayCarGarage();
 
         /*Locomotive loc1 = new Locomotive(1, 100000, 2);
         Locomotive loc2 = new Locomotive(2, 500000, 2);
@@ -53,13 +50,12 @@ public class RunCode {
         RailwayCar loc2 = new Locomotive(8, 8000, 4, null);
         RailwayCar loc3 = new Locomotive(9, 2000, 2, null);
 
-        
     }
 
   /**
    * Inicia o sistema de composição de trens e permite que o usuário realize ações.
    */
-  /*public void trainCompositionSystem() {
+  public void trainCompositionSystem() {
 
     int option;
 
@@ -111,7 +107,7 @@ public class RunCode {
   /**
    * Função privada para criar um novo trem com base nas entradas do usuário.
    */
-  /*private void createTrain() {
+  private void createTrain() {
     System.out.print("Enter the train ID: ");
     int trainId = in.nextInt();
 
@@ -123,11 +119,11 @@ public class RunCode {
     System.out.print("Enter the ID of the first locomotive: ");
     int firstLocomotiveId = in.nextInt();
 
-    Locomotive firstLocomotive = locomotiveGarage.findLocomotiveById(firstLocomotiveId);
+    RailwayCar firstLocomotive = railwayCarGarage.findById(firstLocomotiveId);
 
     if (firstLocomotive == null) {
-        System.out.println("Locomotive with ID " + firstLocomotiveId + " not found.");
-        return;
+    System.out.println("Locomotive with ID " + firstLocomotiveId + " not found.");
+    return;
     }
 
     Train newTrain = new Train(trainId);
@@ -141,7 +137,7 @@ public class RunCode {
   /**
    * Função privada para editar um trem existente com base nas entradas do usuário.
    */
-  /*private void editTrain() {
+  private void editTrain() {
     System.out.print("Enter the train ID: ");
     int editTrainId = in.nextInt();
 
@@ -198,7 +194,7 @@ public class RunCode {
   /**
    * Função privada para desmontar um trem, liberando locomotivas e vagões e removendo-o do pátio.
    */
-  /*private void dismantleTrain(){
+  private void dismantleTrain(){
 
     System.out.print("Enter the train ID: ");
     int dismantleTrainId = in.nextInt();
@@ -236,7 +232,7 @@ public class RunCode {
   /**
    * Função privada para imprimir o menu de edição de trens.
    */
-  /*private void printEditMenu() {
+  private void printEditMenu() {
       System.out.println("Choose how you want to edit your train.");
       System.out.println("1 - Add a wagon");
       System.out.println("2 - Add a locomotive");
@@ -252,7 +248,7 @@ public class RunCode {
    *
    * @param train : O trem ao qual adicionar o vagão.
    */
-  /*private void addWagonToTrain(Train train) {
+  private void addWagonToTrain(Train train) {
       System.out.println("Enter with the wagon ID.");
       int idWagonToAdd = in.nextInt();    
 
@@ -273,7 +269,7 @@ public class RunCode {
    *
    * @param train : O trem ao qual adicionar a locomotiva.
    */
-  /*private void addLocomotiveToTrain(Train train) {
+  private void addLocomotiveToTrain(Train train) {
       System.out.println("Enter with the locomotive ID.");
       int idLocomotiveToAdd = in.nextInt();        
 
@@ -294,7 +290,7 @@ public class RunCode {
    *
    * @param train : O trem do qual remover o último elemento.
    */
-  /*private void removeLastElementFromTrain(Train train) {
+  private void removeLastElementFromTrain(Train train) {
       if (train.getWagons().isEmpty() && train.getLocomotives().isEmpty()) {
           System.out.println("Sorry, there are no locomotives or wagons to remove from this train.");
       } else {
@@ -311,7 +307,7 @@ public class RunCode {
   /**
    * Função privada para listar locomotivas disponíveis.
    */
-  /*private void listFreeLocomotives() {
+  private void listFreeLocomotives() {
       List<Locomotive> allLocomotives = locomotiveGarage.getLocomotives();
 
       System.out.println("Free locomotives:");
@@ -329,7 +325,7 @@ public class RunCode {
   /**
    * Função privada para listar vagões disponíveis.
    */
-  /*private void listFreeWagons() {
+  private void listFreeWagons() {
       List<Wagon> allWagons = wagonGarage.getWagons();
 
       System.out.println("Free wagons:");
@@ -349,7 +345,7 @@ public class RunCode {
   /**
    * Imprime uma representação gráfica de um trem.
    */
-  /*public static void printTrainFigure() {
+  public static void printTrainFigure() {
     System.out.println("--------------------------------------------------");
     System.out.println("\n     e@@@@@@@@@@@@@@@");
     System.out.println("    @@@\"\"\"\"\"\"\"\"\"\"\"\"\"\"");
@@ -357,7 +353,7 @@ public class RunCode {
     System.out.println("  II__[w] | [i] [z] |");
     System.out.println(" {======|_|~~~~~~~~~|");
     System.out.println("/oO--000'\"`-OO---OO-'");
-  }*/
+  }
 
 }
 

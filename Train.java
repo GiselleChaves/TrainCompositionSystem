@@ -6,8 +6,7 @@ import java.util.List;
  */
 public class Train {
     private int id;
-    //private List<Locomotive> locomotives;
-    //private List<Wagon> wagons;
+    private List<RailwayCar> railwayCars;
 
     private int maxWagons; // Número máximo de vagões que um trem consegue puxar
     private int maxWeight; // Número máximo de peso que consegue puxar
@@ -23,8 +22,7 @@ public class Train {
      */
     public Train(int id) {
         this.id = id;
-        this.locomotives = new ArrayList<>();
-        this.wagons = new ArrayList<>();
+        this.railwayCars = new ArrayList<>();
         this.maxWagons = 0;
         this.maxWeight = 0;
     }
@@ -37,22 +35,28 @@ public class Train {
     }
 
     /**
-     * @return A lista de locomotivas do trem.
-     */
-    public List<Locomotive> getLocomotives() {
-        return locomotives;
-    }
-
-    public Locomotive getLocomotive(int id) {
-        Locomotive locomotiveAux = null;
-        for(RailwayCar rc:)
+    * @return Uma lista do tipo passado por parâmetro (Locomotive ou Wagon) que estão na garagem.
+    */
+    public List<RailwayCar> getRailwayCarsFromType(Class<?> type) {
+        List<RailwayCar> list = new ArrayList<RailwayCar>();
+        for(RailwayCar rc : railwayCars) {
+            if(type.isInstance(rc)) {
+            list.add(rc);
+            }
+        }
+        return list;
     }
 
     /**
-     * @return A lista de vagões do trem.
-     */
-    public List<Wagon> getWagons() {
-        return wagons;
+    * @return O Carro Ferroviário com o ID correspondente ou null se não encontrado.
+    */
+    public RailwayCar getRailwayCarById(int id) {
+        for(RailwayCar rc : railwayCars) {
+            if(rc.getId() == id) {
+                return rc;
+            }
+        }
+        return null;
     }
 
     /**
@@ -92,15 +96,15 @@ public class Train {
         int maxNumWagons = 0;
         int numberOfLocomotives = 0;
     
-        for (Locomotive loc : locomotives) {
-            numberOfLocomotives++;
-            maxNumWagons += loc.getMaxNumWagons();
-    
+        for (RailwayCar loc : railwayCars) {
+            if(loc instanceof Locomotive) {
+                numberOfLocomotives++;
+                maxNumWagons += loc.getMaxNumWagons();
+            }
             if (numberOfLocomotives >= MAX_LOCOMOTIVES_WITHOUT_REDUCTION) {
                 maxNumWagons = (int) (maxNumWagons - (maxNumWagons * LOCOMOTIVE_CAPACITY_REDUCTION));
             }
         }
-    
         setMaxWagons(maxNumWagons);
     }
 
@@ -110,10 +114,11 @@ public class Train {
     public void recalculateMaxWeightCapacity() {
         int maxWeightCapacity = 0;
     
-        for (Locomotive loc : locomotives) {
-            maxWeightCapacity += loc.getMaxWeight();
+        for (RailwayCar loc : railwayCars) {
+            if(loc instanceof Locomotive) {
+                maxWeightCapacity += loc.getMaxWeight();
+            }
         }
-    
         setMaxWeight(maxWeightCapacity);
     }
 
@@ -126,8 +131,10 @@ public class Train {
         int wagonsWeight = 0;
 
         // Calcula a capacidade máxima de peso dos vagões já conectados.
-        for (Wagon wagon : wagons) {
-            wagonsWeight += wagon.getMaxCapacity();
+        for (RailwayCar wagon : railwayCars) {
+            if(wagon instanceof Wagon) {
+                wagonsWeight += wagon.getMaxCapacity();
+            }
         }
 
         // Calcula a quantidade de peso disponível para puxar.
@@ -157,10 +164,14 @@ public class Train {
      * @param locomotiveGarage : A garagem em que ela está localizada
      * @return true se a locomotiva foi adicionada com sucesso, false caso contrário.
      */
-    public boolean addLocomotive(Locomotive locomotive, LocomotiveGarage locomotiveGarage) {
 
+
+     /*PAREI AQUIIIIIIIIIIII!!!! */
+    public boolean addLocomotive(RailwayCar railwayCarGarage) {
         // Verifica se o número máximo de locomotivas foi atingido.
-        if (locomotives.size() >= MAX_LOCOMOTIVES) {
+        Locomotive LocomotiveList = railwayCars.railwayCarGarage.getRailwayCarsFromType(Locomotive.class);
+
+        if(LocomotiveList.size() >= MAX_LOCOMOTIVES) {
             System.out.println("The maximum number of locomotives for this train has been reached.");
             return false;
         }

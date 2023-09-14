@@ -3,10 +3,10 @@
  */
  public class Locomotive extends RailwayCar {
 
-    private int id;
+    // private int id;
     private int maxWeight;
     private int maxNumWagons;
-    private Train currentTrain; // Referência para o trem que faz parte no momento ou null se está livre
+    // private Train currentTrain; // Referência para o trem que faz parte no momento ou null se está livre
 
     /**
      * Construtor da classe Locomotive.

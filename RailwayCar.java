@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-
-abstract public class RailwayCar {
+abstract public class RailwayCar implements RailwayCarInterface {
   private int id;
   private Train currentTrain;
 
