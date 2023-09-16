@@ -27,9 +27,9 @@ public class RailwayCarGarage {
   */
   public List<RailwayCar> getRailwayCarsFromType(Class<?> type) {
     List<RailwayCar> list = new ArrayList<RailwayCar>();
-    for(RailwayCar rc : railwayCars) {
-      if(type.isInstance(rc)) {
-        list.add(rc);
+    for(RailwayCar railwayCar : railwayCars) {
+      if(type.isInstance(railwayCar)) {
+        list.add(railwayCar);
       }
     }
     return list;
@@ -40,9 +40,9 @@ public class RailwayCarGarage {
    * @return O Carro Ferroviário com o ID correspondente ou null se não encontrado.
    */
   public RailwayCar findById(int id) {
-    for (RailwayCar rc : railwayCars) {
-        if (rc.getId() == id) {
-            return rc;
+    for (RailwayCar railwayCar : railwayCars) {
+        if (railwayCar.getId() == id) {
+            return railwayCar;
         }
     }
     return null;

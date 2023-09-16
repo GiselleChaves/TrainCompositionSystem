@@ -1,9 +1,17 @@
+import java.util.HashSet;
+import java.util.Set;
+
 abstract public class RailwayCar implements RailwayCarInterface {
   private int id;
   private Train currentTrain;
+  private static Set<Integer> usedIds = new HashSet<>(); //Lista que armazena todos já usados.
 
   public RailwayCar(int id, Train curreTrain) {
+    if (usedIds.contains(id)) {
+      throw new IllegalArgumentException("Car ID must be unique.");
+    }
     this.id = id;
+    usedIds.add(id);
     this.currentTrain = null;
   }
 

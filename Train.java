@@ -39,9 +39,9 @@ public class Train {
     */
     public List<RailwayCar> getRailwayCarsFromType(Class<?> type) {
         List<RailwayCar> list = new ArrayList<RailwayCar>();
-        for(RailwayCar rc : railwayCars) {
-            if(type.isInstance(rc)) {
-            list.add(rc);
+        for(RailwayCar railwayCar : railwayCars) {
+            if(type.isInstance(railwayCar)) {
+            list.add(railwayCar);
             }
         }
         return list;
@@ -51,9 +51,9 @@ public class Train {
     * @return O Carro Ferroviário com o ID correspondente ou null se não encontrado.
     */
     public RailwayCar getRailwayCarById(int id) {
-        for(RailwayCar rc : railwayCars) {
-            if(rc.getId() == id) {
-                return rc;
+        for(RailwayCar railwayCar : railwayCars) {
+            if(railwayCar.getId() == id) {
+                return railwayCar;
             }
         }
         return null;
@@ -98,8 +98,9 @@ public class Train {
     
         for (RailwayCar loc : railwayCars) {
             if(loc instanceof Locomotive) {
+                Locomotive locAux = (Locomotive) loc;
                 numberOfLocomotives++;
-                maxNumWagons += loc.getMaxNumWagons();
+                maxNumWagons += locAux.getMaxNumWagons();
             }
             if (numberOfLocomotives >= MAX_LOCOMOTIVES_WITHOUT_REDUCTION) {
                 maxNumWagons = (int) (maxNumWagons - (maxNumWagons * LOCOMOTIVE_CAPACITY_REDUCTION));
@@ -116,7 +117,8 @@ public class Train {
     
         for (RailwayCar loc : railwayCars) {
             if(loc instanceof Locomotive) {
-                maxWeightCapacity += loc.getMaxWeight();
+                Locomotive locAux = (Locomotive) loc;
+                maxWeightCapacity += locAux.getMaxWeight();
             }
         }
         setMaxWeight(maxWeightCapacity);
@@ -133,7 +135,8 @@ public class Train {
         // Calcula a capacidade máxima de peso dos vagões já conectados.
         for (RailwayCar wagon : railwayCars) {
             if(wagon instanceof Wagon) {
-                wagonsWeight += wagon.getMaxCapacity();
+                Wagon wagAux = (Wagon) wagon;
+                wagonsWeight += wagAux.getMaxCapacity();
             }
         }
 
@@ -149,7 +152,7 @@ public class Train {
     public int availableWagonQuantity() {
         recalculateWagonPullingCapacity();
 
-        int numberOfWagons = wagons.size();
+        int numberOfWagons = getRailwayCarsFromType(Wagon.class).size();
 
         // Calcula a quantidade disponível de vagões com base na capacidade de puxar do trem e na quantidade atual de vagões.
         int availableWagonQuantity = getMaxWagons() - numberOfWagons;
@@ -164,14 +167,10 @@ public class Train {
      * @param locomotiveGarage : A garagem em que ela está localizada
      * @return true se a locomotiva foi adicionada com sucesso, false caso contrário.
      */
+    public boolean addLocomotive(Locomotive locomotive, RailwayCarGarage railwayCarGarage) {
 
-
-     /*PAREI AQUIIIIIIIIIIII!!!! */
-    public boolean addLocomotive(RailwayCar railwayCarGarage) {
         // Verifica se o número máximo de locomotivas foi atingido.
-        Locomotive LocomotiveList = railwayCars.railwayCarGarage.getRailwayCarsFromType(Locomotive.class);
-
-        if(LocomotiveList.size() >= MAX_LOCOMOTIVES) {
+        if (getRailwayCarsFromType(Locomotive.class).size() >= MAX_LOCOMOTIVES) {
             System.out.println("The maximum number of locomotives for this train has been reached.");
             return false;
         }
@@ -183,15 +182,15 @@ public class Train {
         }
 
         // Verifica se já existem vagões, impedindo a inserção de locomotivas após vagões.
-        if (wagons.size() != 0) {
+        if (getRailwayCarsFromType(Wagon.class).size() != 0) {
             System.out.println("Sorry, you cannot insert a locomotive after a wagon.");
             return false;
         } else {
             locomotive.setCurrentTrain(this);
-            locomotives.add(locomotive);
+            railwayCars.add(locomotive);
 
-            //Remover da garagem de locomotivas.
-            locomotiveGarage.removeLocomotive(locomotive);
+            //Remover da garagem.
+            railwayCarGarage.removeRailwayCar(locomotive);
             return true;
         }
     }
@@ -203,10 +202,10 @@ public class Train {
      * @param wagonGarage : A garagem em que ele está localizado.
      * @return true se o vagão foi adicionado com sucesso, false caso contrário.
      */
-    public boolean addWagon(Wagon wagon, WagonGarage wagonGarage){
+    public boolean addWagon(Wagon wagon, RailwayCarGarage railwayCarGarage){
 
         // Verifica se há locomotivas inseridas antes.
-        if (locomotives.size() == 0) {
+        if (getRailwayCarsFromType(Locomotive.class).size() == 0) {
             System.out.println("Sorry, you need to add locomotives first.");
             return false;
         }
@@ -230,55 +229,33 @@ public class Train {
         } else{
 
             wagon.setCurrentTrain(this);
-            wagons.add(wagon);
+            railwayCars.add(wagon);
 
-            //Remover da garagem de vagões
-            wagonGarage.removeWagon(wagon);
+            //Remover da garagem.
+            railwayCarGarage.removeRailwayCar(wagon);
             return true;
         }
     }
 
     /**
-     * Remove o último vagão do trem e o coloca na garagem de vagões.
+     * Remove o último elemento do trem e o coloca na garagem de vagões.
      *
-     * @param wagonGarage : A garagem de vagões onde o vagão será colocado.
-     * @return true se o vagão foi removido com sucesso, false caso contrário.
+     * @param railwayCarGarage : A garagem de carros ferroviários onde o elemento será colocado.
+     * @return true se o elemento foi removido com sucesso, false caso contrário.
      */
-    public boolean removeLastWagon(WagonGarage wagonGarage) {
+    public boolean removeLastElement(RailwayCarGarage railwayCarGarage) {
 
-        if (!wagons.isEmpty()) {
-            Wagon lastWagon = wagons.get(wagons.size() - 1); // Obtém o último vagão.
+        if (!railwayCars.isEmpty()) {
+            RailwayCar lastElement = railwayCars.get(railwayCars.size() - 1); // Obtém o último.
 
-            lastWagon.setCurrentTrain(null);
-            wagonGarage.addWagon(lastWagon);
+            lastElement.setCurrentTrain(null);
+            railwayCarGarage.addRailwayCar(lastElement);
 
-            wagons.remove(lastWagon);
+            railwayCars.remove(lastElement);
 
             return true;
         }
-        System.out.println("No wagons to remove from this train.");
-        return false;
-    }
-    
-    /**
-     * Remove a última locomotiva do trem e a coloca na garagem de locomotivas.
-     *
-     * @param locomotiveGarage : A garagem de locomotivas onde a locomotiva será colocada.
-     * @return true se a locomotiva foi removida com sucesso, false caso contrário.
-     */
-    public boolean removeLastLocomotive(LocomotiveGarage locomotiveGarage) {
-        if (!locomotives.isEmpty()) {
-            Locomotive lastLocomotive = locomotives.get(locomotives.size() - 1); // Obtém a última locomotiva.
-    
-            lastLocomotive.setCurrentTrain(null);
-            locomotiveGarage.addLocomotive(lastLocomotive);
-    
-            locomotives.remove(lastLocomotive);
-    
-            return true;
-        }
-    
-        System.out.println("No locomotives to remove from this train.");
+        System.out.println("No elements to remove from this train.");
         return false;
     }
 }

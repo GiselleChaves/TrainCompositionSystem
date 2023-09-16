@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe que representa um pátio de trens onde trens podem ser armazenados e gerenciados.
  */
 public class TrainYard {
 
-    private ArrayList<Train> trains; //RETIREI STATIC
+    private ArrayList<Train> trains;
     
     /**
      * Construtor padrão da classe TrainYard, inicializa a lista de trens.
@@ -20,7 +21,7 @@ public class TrainYard {
      * @param train O trem a ser adicionado ao pátio.
      */
     public void addTrain(Train train) {
-        if (train.getLocomotives().isEmpty()) {
+        if (train.getRailwayCarsFromType(Locomotive.class).isEmpty()) {
             System.out.println("Sorry, a train must have at least one locomotive!\n. Try again.");
             return;
         }
@@ -78,18 +79,40 @@ public class TrainYard {
 
                 System.out.println("Train ID: " + train.getId());
         
-                if (!train.getLocomotives().isEmpty()) {  
+                if (!train.getRailwayCarsFromType(Locomotive.class).isEmpty()) {  
                     System.out.println("Locomotives:");
-                    for (Locomotive locomotive : train.getLocomotives()) {
+
+                    //Fazendo a lista de locomotivas.
+                    List<Locomotive> locomotives = new ArrayList<>();
+                    List<RailwayCar> railwayCars = train.getRailwayCarsFromType(Locomotive.class);
+                    
+                    for (RailwayCar car : railwayCars) {
+                        if (car instanceof Locomotive) {
+                            locomotives.add((Locomotive) car);
+                        }
+                    }
+                    
+                    for (Locomotive locomotive : locomotives) {
                         System.out.println("  Locomotive ID: " + locomotive.getId());
                     }
                 } else {
                     System.out.println("  No locomotives associated with this train.");
                 }
         
-                if (!train.getWagons().isEmpty()) {
+                if (!train.getRailwayCarsFromType(Wagon.class).isEmpty()) {
                     System.out.println("Wagons:");
-                    for (Wagon wagon : train.getWagons()) {
+
+                    //Fazendo a lista de vagões.
+                    List<Wagon> wagons = new ArrayList<>();
+                    List<RailwayCar> railwayCars = train.getRailwayCarsFromType(Wagon.class);
+                    
+                    for (RailwayCar car : railwayCars) {
+                        if (car instanceof Wagon) {
+                            wagons.add((Wagon) car);
+                        }
+                    }
+
+                    for (Wagon wagon : wagons) {
                         System.out.println("  Wagon ID: " + wagon.getId());
                     }
                 } else {

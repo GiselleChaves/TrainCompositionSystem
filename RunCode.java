@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.List;
+import java.util.ArrayList;
 
 /*
  * Authors: Giselle Chaves e Ashiley Bianca 
@@ -17,31 +18,6 @@ public class RunCode {
         in = new Scanner(System.in);
         RailwayCarGarage railwayCarGarage = new RailwayCarGarage();
 
-        /*Locomotive loc1 = new Locomotive(1, 100000, 2);
-        Locomotive loc2 = new Locomotive(2, 500000, 2);
-        Locomotive loc3 = new Locomotive(3, 3000000, 5);
-        Locomotive loc4 = new Locomotive(4, 1700000, 4);
-        Locomotive loc5 = new Locomotive(5, 2000000, 3);
-
-        Wagon wag1 = new Wagon(1, 50);
-        Wagon wag2 = new Wagon(2, 150);
-        Wagon wag3 = new Wagon(3, 650);
-        Wagon wag4 = new Wagon(4, 850);
-        Wagon wag5 = new Wagon(5, 750);
-
-
-        locomotiveGarage.addLocomotive(loc1);
-        locomotiveGarage.addLocomotive(loc2);
-        locomotiveGarage.addLocomotive(loc3);
-        locomotiveGarage.addLocomotive(loc4);
-        locomotiveGarage.addLocomotive(loc5);
-
-        wagonGarage.addWagon(wag1);
-        wagonGarage.addWagon(wag2);
-        wagonGarage.addWagon(wag3);
-        wagonGarage.addWagon(wag4);
-        wagonGarage.addWagon(wag5);*/
-
         RailwayCar wg1 = new Wagon(1, 700, null);
         RailwayCar wg2 = new Wagon(2, 1000, null);
         RailwayCar wg3 = new Wagon(3, 200, null);
@@ -49,6 +25,13 @@ public class RunCode {
         RailwayCar loc1 = new Locomotive(7, 9000, 5, null);
         RailwayCar loc2 = new Locomotive(8, 8000, 4, null);
         RailwayCar loc3 = new Locomotive(9, 2000, 2, null);
+
+        railwayCarGarage.addRailwayCar(wg1);
+        railwayCarGarage.addRailwayCar(wg2);
+        railwayCarGarage.addRailwayCar(wg3);
+        railwayCarGarage.addRailwayCar(loc1);
+        railwayCarGarage.addRailwayCar(loc2);
+        railwayCarGarage.addRailwayCar(loc3);
 
     }
 
@@ -119,20 +102,28 @@ public class RunCode {
     System.out.print("Enter the ID of the first locomotive: ");
     int firstLocomotiveId = in.nextInt();
 
-    RailwayCar firstLocomotive = railwayCarGarage.findById(firstLocomotiveId);
+    RailwayCar firstCar = railwayCarGarage.findById(firstLocomotiveId);
 
-    if (firstLocomotive == null) {
-    System.out.println("Locomotive with ID " + firstLocomotiveId + " not found.");
-    return;
+    if (firstCar == null) {
+        System.out.println("Car with ID " + firstLocomotiveId + " not found.");
+        return;
     }
 
-    Train newTrain = new Train(trainId);
+    if (firstCar instanceof Locomotive) {
+        Locomotive firstLocomotive = (Locomotive) firstCar;
 
-    if(newTrain.addLocomotive(firstLocomotive, locomotiveGarage)){
-        trainYard.addTrain(newTrain);
-        System.out.println("Train " + trainId + " created with locomotive " + firstLocomotiveId + ".");
+        Train newTrain = new Train(trainId);
+
+        if (newTrain.addLocomotive(firstLocomotive, railwayCarGarage)) {
+            trainYard.addTrain(newTrain);
+            System.out.println("Train " + trainId + " created with locomotive " + firstLocomotiveId + ".");
+        }
+    } else {
+        System.out.println("Car with ID " + firstLocomotiveId + " is not a locomotive.");
+    }   
     }
-  }
+
+
 
   /**
    * Função privada para editar um trem existente com base nas entradas do usuário.
@@ -194,38 +185,35 @@ public class RunCode {
   /**
    * Função privada para desmontar um trem, liberando locomotivas e vagões e removendo-o do pátio.
    */
-  private void dismantleTrain(){
+    private void dismantleTrain() {
+        System.out.print("Enter the train ID: ");
+        int dismantleTrainId = in.nextInt();
 
-    System.out.print("Enter the train ID: ");
-    int dismantleTrainId = in.nextInt();
+        Train dismantleTrain = trainYard.findTrainById(dismantleTrainId);
 
-    Train dismantleTrain = trainYard.findTrainById(dismantleTrainId);
+        if (dismantleTrain != null) {
+            System.out.println("\nTrain with ID " + dismantleTrainId + " was located.");
 
-    if (dismantleTrain != null) {
-        System.out.println("\nTrain with ID " + dismantleTrainId + " was located.");
+            // Coletar todos os RailwayCars do trem
+            List<RailwayCar> railwayCars = new ArrayList<>(dismantleTrain.getRailwayCarsFromType(RailwayCar.class));
 
-        // Liberando as locomotivas do trem e colocando na garagem de locomotivas
-        for (Locomotive locomotive : dismantleTrain.getLocomotives()) {
-            locomotive.setCurrentTrain(null);
-            locomotiveGarage.addLocomotive(locomotive);
+            // Liberar os RailwayCars do trem
+            for (RailwayCar railwayCar : railwayCars) {
+                railwayCar.setCurrentTrain(null);
+                railwayCarGarage.addRailwayCar(railwayCar);
+            }
+
+            // Limpar a lista de RailwayCars do trem
+            railwayCars.clear();
+
+            // Remover o trem do pátio.
+            trainYard.removeTrain(dismantleTrain);
+
+            System.out.println("Train dismantled.");
+        } else {
+            System.out.println("Train not found.");
         }
-        dismantleTrain.getLocomotives().clear();
-
-        // Liberando os vagões do trem e colocando na garagem de vagões
-        for (Wagon wagon : dismantleTrain.getWagons()) {
-            wagon.setCurrentTrain(null);
-            wagonGarage.addWagon(wagon);
-        }
-        dismantleTrain.getWagons().clear(); 
-
-        // Removendo do pátio.
-        trainYard.removeTrain(dismantleTrain);
-
-        System.out.println("Train dismantled.");
-    } else {
-        System.out.println("Train not found.");
     }
-  }
 
   // Funções utilizadas pelo "editTrain()":
 
@@ -248,42 +236,50 @@ public class RunCode {
    *
    * @param train : O trem ao qual adicionar o vagão.
    */
-  private void addWagonToTrain(Train train) {
-      System.out.println("Enter with the wagon ID.");
-      int idWagonToAdd = in.nextInt();    
+    private void addWagonToTrain(Train train) {
+        System.out.println("Enter with the wagon ID.");
+        int idWagonToAdd = in.nextInt();    
 
-      Wagon wagonToAdd = wagonGarage.findWagonById(idWagonToAdd);
+        RailwayCar wagonToAdd = railwayCarGarage.findById(idWagonToAdd);
 
-      if (wagonToAdd == null) {
-          System.out.println("Wagon with ID " + idWagonToAdd + " not available.");
-          return;
-      }
+        if (wagonToAdd == null) {
+            System.out.println("Wagon with ID " + idWagonToAdd + " not available.");
+            return;
+        }
 
-      if (train.addWagon(wagonToAdd, wagonGarage)) {
-          System.out.println("The wagon was added");
-      }
-  }
+        if(wagonToAdd instanceof Wagon){
+            Wagon wagon = (Wagon) wagonToAdd;
+
+            if (train.addWagon(wagon, railwayCarGarage)) {
+                System.out.println("The wagon was added");
+            }
+        }
+    }
 
   /**
    * Função privada para adicionar uma locomotiva a um trem.
    *
    * @param train : O trem ao qual adicionar a locomotiva.
    */
-  private void addLocomotiveToTrain(Train train) {
-      System.out.println("Enter with the locomotive ID.");
-      int idLocomotiveToAdd = in.nextInt();        
+    private void addLocomotiveToTrain(Train train) {
+        System.out.println("Enter with the locomotive ID.");
+        int idLocomotiveToAdd = in.nextInt();        
 
-      Locomotive locomotiveToAdd = locomotiveGarage.findLocomotiveById(idLocomotiveToAdd);
+        RailwayCar locomotiveToAdd = railwayCarGarage.findById(idLocomotiveToAdd);
 
-      if (locomotiveToAdd == null) {
-          System.out.println("Locomotive with ID " + idLocomotiveToAdd+ " not available.");
-          return;
-      }
+        if (locomotiveToAdd == null) {
+            System.out.println("Locomotive with ID " + idLocomotiveToAdd+ " not available.");
+            return;
+        }
 
-      if (train.addLocomotive(locomotiveToAdd, locomotiveGarage)) {
-          System.out.println("The locomotive was added");
-      }
-  }
+        if(locomotiveToAdd instanceof Locomotive){
+            Locomotive locomotive = (Locomotive) locomotiveToAdd;
+
+            if (train.addLocomotive(locomotive, railwayCarGarage)) {
+                System.out.println("The locomotive was added");
+            }
+        }
+    }
 
   /**
    * Função privada para remover o último elemento (vagão ou locomotiva) de um trem.
@@ -291,42 +287,41 @@ public class RunCode {
    * @param train : O trem do qual remover o último elemento.
    */
   private void removeLastElementFromTrain(Train train) {
-      if (train.getWagons().isEmpty() && train.getLocomotives().isEmpty()) {
+      if (train.getRailwayCarsFromType(RailwayCar.class).isEmpty()) {
           System.out.println("Sorry, there are no locomotives or wagons to remove from this train.");
       } else {
-          if (!train.getWagons().isEmpty()) {
-              train.removeLastWagon(wagonGarage);
-              System.out.println("Last element removed.");
-          } else {
-              train.removeLastLocomotive(locomotiveGarage);
+              train.removeLastElement(railwayCarGarage);
               System.out.println("Last element removed.");
           }
-      }
-  }
+    }
 
   /**
    * Função privada para listar locomotivas disponíveis.
    */
-  private void listFreeLocomotives() {
-      List<Locomotive> allLocomotives = locomotiveGarage.getLocomotives();
+    private void listFreeLocomotives() {
+        List<RailwayCar> allLocomotives = railwayCarGarage.getRailwayCarsFromType(Locomotive.class);
 
-      System.out.println("Free locomotives:");
-      System.out.println();
+        System.out.println("Free locomotives:");
+        System.out.println();
 
-      if (allLocomotives.isEmpty()) {
-          System.out.println("Sorry, there are no available locomotives.");
-      } else {
-          for (Locomotive locomotive : allLocomotives) {
-              System.out.println(locomotive.toString());
-          }
-      }
-  }
+        if (allLocomotives.isEmpty()) {
+            System.out.println("Sorry, there are no available locomotives.");
+        } else {
+            for (RailwayCar car : allLocomotives) {
+                if (car instanceof Locomotive) {
+                    Locomotive locomotive = (Locomotive) car;
+                    System.out.println(locomotive.toString());
+                }
+            }
+        }
+    }
+
 
   /**
    * Função privada para listar vagões disponíveis.
    */
   private void listFreeWagons() {
-      List<Wagon> allWagons = wagonGarage.getWagons();
+    List<RailwayCar> allWagons = railwayCarGarage.getRailwayCarsFromType(Wagon.class);
 
       System.out.println("Free wagons:");
       System.out.println();
@@ -334,9 +329,12 @@ public class RunCode {
       if (allWagons.isEmpty()) {
           System.out.println("Sorry, there are no available wagons.");
       } else {
-          for (Wagon wagon : allWagons) {
-              System.out.println(wagon.toString());
-          }
+        for (RailwayCar car : allWagons) {
+            if (car instanceof Wagon) {
+                Wagon wagon = (Wagon) car;
+                System.out.println(wagon.toString());
+            }
+        }
       }
   }
 

@@ -2,10 +2,8 @@
  * Classe que representa um vagão utilizado em composições de trens.
  */
 public class Wagon extends RailwayCar{
-
-    // private int id;
+    
     private int maxCapacity;
-    // private Train currentTrain; // Referência para o trem que faz parte no momento ou null se está livre
 
     /**
      * Construtor da classe Wagon para criar um novo vagão com um ID e capacidade máxima especificados.
